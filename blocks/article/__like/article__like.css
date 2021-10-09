@@ -1,0 +1,19 @@
+.article__like {
+    border: none;
+    background-color: transparent;
+    align-self: center;
+    background-image: url('../../../images/like.svg');
+    width: 22px;
+    height: 19px;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    cursor: pointer;
+}
+
+.article__like:hover {
+    opacity: 0.5;
+}
+
+.article__like_liked {
+    background-image: url('../../../images/like-active.svg');
+}
