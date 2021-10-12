@@ -1,0 +1,9 @@
+.profile__name-and-button-block {
+    display: flex;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__name-and-button-block {
+        padding: 0 19px 0 46px;
+    }
+}

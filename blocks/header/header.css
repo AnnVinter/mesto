@@ -2,7 +2,9 @@
     display: flex;
     flex-direction: column;
     max-width: calc(100% - (2 * 200px));
-    margin: 0 auto;
+    margin: 45px auto 40px auto;
+    min-height: 74px;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 1279px) {
@@ -20,5 +22,7 @@
 @media screen and (max-width: 767px) {
     .header {
         max-width: 100%;
+        margin: 28px auto 42px auto;
+        min-height: 56px;
     }
 }

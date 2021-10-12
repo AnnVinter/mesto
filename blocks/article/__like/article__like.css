@@ -13,7 +13,3 @@
 .article__like:hover {
     opacity: 0.5;
 }
-
-.article__like_liked {
-    background-image: url('../../../images/like-active.svg');
-}

@@ -2,20 +2,22 @@
     display: inline-block;
     text-decoration: none;
     background-image: url('../../../images/Logo.svg');
+    background-size: cover;
     width: 142px;
     height: 33px;
-    margin: 45px 0 41px 0;
-    transition: background-image 1s ease-in-out;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }
 
 .header__logo:hover {
-    background-image: url('../../../images/LogoDark.svg');
+    opacity: 0.7;
 }
 
 @media screen and (max-width: 767px) {
     .header__logo {
+        background-image: url('../../../images/logosm.svg');
         width: 103.74px;
         height: 24.4px;
-        margin: 28px 0 31.6px 27px;
+        margin-left: 27px;
     }
 }
