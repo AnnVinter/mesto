@@ -24,59 +24,17 @@
             <button type="button" aria-label="Добавить пост" class="profile__add-button"></button>
         </section>
         <section class="elements">
-            <ul class="elements__list">
-                <li class="article">
-                    <img class="article__image" src="./images/card1.png" alt="Замок">
-                    <div class="article__image-info">
-                        <h3 class="article__title">Карачаевск</h3>
-                        <button type="button" aria-label="Лайк" class="article__like"></button>
-                    </div>
-                </li>
-                <li class="article">
-                    <img class="article__image" src="./images/card2.png" alt="Гора">
-                    <div class="article__image-info">
-                        <h3 class="article__title">Гора Эльбрус</h3>
-                        <button type="button" aria-label="Лайк" class="article__like"></button>
-                    </div>
-                </li>
-                <li class="article">
-                    <img class="article__image" src="./images/card3.png" alt="Долина">
-                    <div class="article__image-info">
-                        <h3 class="article__title">Домбай</h3>
-                        <button type="button" aria-label="Лайк" class="article__like"></button>
-                    </div>
-                </li>
-                <li class="article">
-                    <img class="article__image" src="./images/card2.png" alt="Гора">
-                    <div class="article__image-info">
-                        <h3 class="article__title">Гора Эльбрус</h3>
-                        <button type="button" aria-label="Лайк" class="article__like"></button>
-                    </div>
-                </li>
-                <li class="article">
-                    <img class="article__image" src="./images/card3.png" alt="Долина">
-                    <div class="article__image-info">
-                        <h3 class="article__title">Домбай</h3>
-                        <button type="button" aria-label="Лайк" class="article__like"></button>
-                    </div>
-                </li>
-                <li class="article">
-                    <img class="article__image" src="./images/card1.png" alt="Замок">
-                    <div class="article__image-info">
-                        <h3 class="article__title">Карачаево-Черкессия</h3>
-                        <button type="button" aria-label="Лайк" class="article__like"></button>
-                    </div>
-                </li>
+            <ul class="elements__list">      
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_info">
         <div class="popup__content">
             <button type="button" aria-label="Закрыть поп-ап" class="popup__close-button"></button>
-            <form name="edit-info-form" class="popup__form">
+            <form name="edit-info-form" class="popup__form popup__form_type_info">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input type="text" name="Жак-Ив Кусто" placeholder="Имя" class="popup__input popup__input_type_name">
                 <input type="text" name="Исследователь океана" placeholder="Краткая информация" class="popup__input popup__input_type_description">
@@ -84,6 +42,36 @@
             </form>
         </div>
     </div>
+    <div class="popup popup_type_post">
+        <div class="popup__content">
+            <button type="button" aria-label="Закрыть поп-ап" class="popup__close-button"></button>
+            <form name="edit-info-form" class="popup__form popup__form_type_post">
+                <h2 class="popup__title">Новое место</h2>
+                <input type="text" name="Название" placeholder="Название" class="popup__input popup__input_type_title">
+                <input type="text" name="Ссылка на картинку" placeholder="Ссылка на картинку" class="popup__input popup__input_type_photo">
+                <button type="submit" class="popup__submit-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_photo">
+        <div class="popup__area">
+            <button type="button" aria-label="Закрыть поп-ап" class="popup__close-button"></button>
+        <figure class="popup__figure">
+            <img class="popup__image" src="#" alt="Место">
+            <figcaption class="popup__figcaption">text</figcaption>
+        </figure>
+        </div>
+    </div>
+    <template id="template">
+        <li class="article">
+            <button type="button" aria-label="Удалить" class="article__delete"></button>
+            <a><img class="article__image" src="./images/card1.png" alt="Замок"></a>
+            <div class="article__image-info">
+                <h3 class="article__title">Карачаевск</h3>
+                <button type="button" aria-label="Лайк" class="article__like"></button>
+            </div>
+        </li>
+    </template>
     <script src="scripts/index.js"></script>
 </body>
 </html>
