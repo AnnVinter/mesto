@@ -1,10 +1,10 @@
-const popup = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 const popupInfo = document.querySelector('.popup_type_info');
 const popupPost = document.querySelector('.popup_type_post');
 const popupPhoto = document.querySelector('.popup_type_photo');
 const openEditButton = document.querySelector('.profile__edit-button');
 const openAddButton = document.querySelector('.profile__add-button');
-const closeButton = document.querySelectorAll('.popup__close-button');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 const namePage = document.querySelector('.profile__name');
 const descriptionPage = document.querySelector('.profile__description');
 const nameForm = document.querySelector('.popup__input_type_name');
@@ -51,36 +51,30 @@ initialCards.reverse().forEach(prependCard);
 function addCard(item) {
     const element = templateItem.querySelector('.article').cloneNode(true);
     element.querySelector('.article__title').innerText = item.name;
+    element.querySelector('.article__image').alt = item.name;
     element.querySelector('.article__image').src = item.link;
     element.querySelector('.article__delete').addEventListener('click',(event) => {
         event.target.closest('.article').remove();
     });
-    const likeButton = element.querySelectorAll('.article__like');
-    likeButton.forEach(function(item) {
-        item.addEventListener('click', function(event) {
-            event.target.classList.toggle('article__like_liked');
-        })
+    const likeButton = element.querySelector('.article__like');
+    likeButton.addEventListener('click', function(event) {
+        event.target.classList.toggle('article__like_liked');
     });
-    element.querySelector('.article__image').addEventListener('click', function(event){
+    const articlePhoto = element.querySelector('.article__image');
+    articlePhoto.addEventListener('click', function(event) {
         event.preventDefault();
         const image = item.link;
         const title = item.name;
         openImage(image, title);
-    })
-    const openPhoto = templateItem.querySelectorAll('.article__image');
-    openPhoto.forEach(function(item) {
-        item.addEventListener('click', function(event) {
-            popupImage.src = initialCards.link;
-            popupFigcaption.textContent = initialCards.name;
-            popupInfo.classList.add('popup_opened');
-        })
-    })
+    });
     return element;
 };
 
 function openImage(image, title) {
-    popupPhoto.classList.add('popup_opened');
+    openPopup(popupPhoto);
+    //popupPhoto.classList.add('popup_opened');
     popupImage.src = image;
+    popupImage.alt = title;
     popupFigcaption.textContent = title;
 }
 function prependCard(item) {
@@ -101,18 +95,23 @@ function addPhoto(event) {
     closePopup();
 };
 
-function openPopupInfo() {
+function setInfo() {
     nameForm.value = namePage.textContent;
     descriptionForm.value = descriptionPage.textContent;
-    popupInfo.classList.add('popup_opened');
+    //popupInfo.classList.add('popup_opened');
+    openPopup(popupInfo);
+};
+
+function openPopup(elem) {
+    elem.classList.add('popup_opened')
 };
 
 function openPopupPost() {
-    popupPost.classList.add('popup_opened')
+    openPopup(popupPost);
 };
 
 function closePopup() {
-    popup.forEach((elem) => elem.classList.remove('popup_opened'))
+    popups.forEach((elem) => elem.classList.remove('popup_opened'))
 };
 
 function submitForm(event) {
@@ -122,9 +121,9 @@ function submitForm(event) {
     closePopup();
 };
 
-openEditButton.addEventListener('click', openPopupInfo);
+openEditButton.addEventListener('click', setInfo);
 openAddButton.addEventListener('click', openPopupPost);
-closeButton.forEach((elem) => elem.addEventListener('click', closePopup));
+closeButtons.forEach((elem) => elem.addEventListener('click', closePopup));
 formInfo.addEventListener('submit', submitForm);
 formPost.addEventListener('submit', addPhoto);
 
