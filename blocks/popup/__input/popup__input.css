@@ -1,5 +1,5 @@
 .popup__input {
-    margin: 54px auto 30px auto;
+    margin: 0 auto;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     font-size: 14px;
@@ -12,11 +12,5 @@
 }
 
 .popup__input:last-of-type {
-    margin: 0 auto;
-}
-
-@media screen and (max-width: 767px) {
-    .popup__input {
-        margin: 75px auto 30px auto;
-    }
+    margin: 30px auto 0 auto;
 }

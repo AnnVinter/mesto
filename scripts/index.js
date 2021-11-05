@@ -46,6 +46,11 @@ const initialCards = [
 const elementsList = document.querySelector('.elements__list');
 const templateItem = document.querySelector('#template').content;
 
+function prependCard(item) {
+    const element = addCard(item);
+    elementsList.prepend(element);
+}
+
 initialCards.reverse().forEach(prependCard);
 
 function addCard(item) {
@@ -68,21 +73,16 @@ function addCard(item) {
         openImage(image, title);
     });
     return element;
-};
+}
 
-function openImage(image, title) {
+const openImage = (image, title) => {
     openPopup(popupPhoto);
-    //popupPhoto.classList.add('popup_opened');
     popupImage.src = image;
     popupImage.alt = title;
     popupFigcaption.textContent = title;
 }
-function prependCard(item) {
-    const element = addCard(item);
-    elementsList.prepend(element);
-};
 
-function addPhoto(event) {
+const addPhoto = (event) => {
     event.preventDefault();
     const name = titleForm.value;
     const link = photoForm.value;
@@ -93,33 +93,50 @@ function addPhoto(event) {
     prependCard(newCard);
     event.target.reset();
     closePopup();
-};
+}
 
-function setInfo() {
+const setInfo = () => {
     nameForm.value = namePage.textContent;
     descriptionForm.value = descriptionPage.textContent;
-    //popupInfo.classList.add('popup_opened');
     openPopup(popupInfo);
-};
+}
 
-function openPopup(elem) {
-    elem.classList.add('popup_opened')
-};
+const openPopup = (elem) => {
+    elem.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
+    document.addEventListener('click', closePopupByClick);
+}
 
-function openPopupPost() {
+const openPopupPost = () => {
     openPopup(popupPost);
-};
+}
 
-function closePopup() {
-    popups.forEach((elem) => elem.classList.remove('popup_opened'))
-};
+const closePopupByEsc = (evt) => {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+        evt.target.removeEventListener('keydown', closePopupByEsc);
+        evt.target.removeEventListener('click', closePopupByClick);
+    }
+}
 
-function submitForm(event) {
+const closePopupByClick = (evt) => {
+    if (evt.target.classList.contains('popup')) {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+    }
+}
+
+const closePopup = () => {
+    popups.forEach((elem) => elem.classList.remove('popup_opened'));
+}
+
+const submitForm = (event) => {
     event.preventDefault();
     namePage.textContent = nameForm.value;
     descriptionPage.textContent = descriptionForm.value;
     closePopup();
-};
+}
 
 openEditButton.addEventListener('click', setInfo);
 openAddButton.addEventListener('click', openPopupPost);
