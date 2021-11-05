@@ -18,30 +18,30 @@ const popupFigcaption = document.querySelector('.popup__figcaption');
 
 const initialCards = [
     {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-]; 
+];
 
 const elementsList = document.querySelector('.elements__list');
 const templateItem = document.querySelector('#template').content;
@@ -55,18 +55,18 @@ initialCards.reverse().forEach(prependCard);
 
 function addCard(item) {
     const element = templateItem.querySelector('.article').cloneNode(true);
+    const articlePhoto = element.querySelector('.article__image');
     element.querySelector('.article__title').innerText = item.name;
-    element.querySelector('.article__image').alt = item.name;
-    element.querySelector('.article__image').src = item.link;
-    element.querySelector('.article__delete').addEventListener('click',(event) => {
+    articlePhoto.alt = item.name;
+    articlePhoto.src = item.link;
+    element.querySelector('.article__delete').addEventListener('click', (event) => {
         event.target.closest('.article').remove();
     });
     const likeButton = element.querySelector('.article__like');
-    likeButton.addEventListener('click', function(event) {
+    likeButton.addEventListener('click', function (event) {
         event.target.classList.toggle('article__like_liked');
     });
-    const articlePhoto = element.querySelector('.article__image');
-    articlePhoto.addEventListener('click', function(event) {
+    articlePhoto.addEventListener('click', function (event) {
         event.preventDefault();
         const image = item.link;
         const title = item.name;
@@ -92,6 +92,9 @@ const addPhoto = (event) => {
     }
     prependCard(newCard);
     event.target.reset();
+    const submitButton = event.target.querySelector('.popup__submit-button');
+    submitButton.disabled = true;
+    submitButton.classList.add('popup__submit-button_disabled');
     closePopup();
 }
 
@@ -113,22 +116,20 @@ const openPopupPost = () => {
 
 const closePopupByEsc = (evt) => {
     if (evt.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        closePopup(openedPopup);
-        evt.target.removeEventListener('keydown', closePopupByEsc);
-        evt.target.removeEventListener('click', closePopupByClick);
+        closePopup();
     }
 }
 
 const closePopupByClick = (evt) => {
     if (evt.target.classList.contains('popup')) {
-        const openedPopup = document.querySelector('.popup_opened');
-        closePopup(openedPopup);
+        closePopup();
     }
 }
 
 const closePopup = () => {
     popups.forEach((elem) => elem.classList.remove('popup_opened'));
+    document.removeEventListener('keydown', closePopupByEsc);
+    document.removeEventListener('click', closePopupByClick);
 }
 
 const submitForm = (event) => {
