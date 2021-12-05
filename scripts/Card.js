@@ -1,9 +1,11 @@
+const popupPhoto = document.querySelector('.popup_type_photo');
 class Card {
     constructor(card, templateSelector, openPopup) {
-        this._title = card.title;
+        this._name = card.name;
         this._link = card.link;
         this._templateSelector = templateSelector;
         this._openPopup = openPopup;
+        //const popupPhoto = document.querySelector('.popup_type_photo');
     }
 
     _getTemplate() {
@@ -20,8 +22,8 @@ class Card {
         this._setEventListeners();
         const cardTitle = this._element.querySelector('.article__title');
         const cardImage = this._element.querySelector('.article__image');
-        cardTitle.textContent = this._title;
-        cardImage.alt = this._title;
+        cardTitle.textContent = this._name;
+        cardImage.alt = this._name;
         cardImage.src = this._link;
         return this._element;
     }
@@ -29,7 +31,7 @@ class Card {
     _setEventListeners() {
         this._element.querySelector('.article__like').addEventListener('click', (evt) => this._likePhoto(evt));
         this._element.querySelector('.article__delete').addEventListener('click', (evt) => this._deletePhoto(evt));
-        this._element.querySelector('.article__image').addEventListener('click', () => this._openImage(this._link, this._title));
+        this._element.querySelector('.article__image').addEventListener('click', () => this._openImage(this._link, this._name));
     }
 
     _likePhoto(evt) {
@@ -40,11 +42,11 @@ class Card {
         evt.target.closest('.article').remove();
     }
 
-    _openImage(link, title) {
+    _openImage(link, name) {
         document.querySelector('.popup__image').src = link;
-        document.querySelector('.popup__image').alt = title;
-        document.querySelector('.popup__figcaption').textContent = title;
-        this._openPopup(document.querySelector('.popup_type_photo'));
+        document.querySelector('.popup__image').alt = name;
+        document.querySelector('.popup__figcaption').textContent = name;
+        this._openPopup(popupPhoto);
     }
 }
 export default Card;

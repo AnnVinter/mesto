@@ -29,9 +29,8 @@ class FormValidator {
     }
  
     _checkSubmitButton() {
-        const button = this._formName.querySelector(this._submitButtonSelector);
-        button.disabled = !this._formName.checkValidity();
-        button.classList.toggle(this._inactiveButtonClass, !this._formName.checkValidity());
+        this._button.disabled = !this._formName.checkValidity();
+        this._button.classList.toggle(this._inactiveButtonClass, !this._formName.checkValidity());
     }
     
     _handleFieldValidation(input) {
@@ -52,6 +51,12 @@ class FormValidator {
         const error = this._formName.querySelector(`#${input.id}-error`);
         input.classList.remove(this._inputErrorClass);
         error.textContent = '';
+    }
+    resetValidation() {
+        //this._checkSubmitButton();
+        this._inputs.forEach((input) => {
+            this._hideError(input);
+        })
     }
 }
 export default FormValidator;

@@ -16,6 +16,7 @@ const formInfo = document.querySelector('.popup__form_type_info');
 const formPost = document.querySelector('.popup__form_type_post');
 const popupImage = document.querySelector('.popup__image');
 const popupFigcaption = document.querySelector('.popup__figcaption');
+const elementsList = document.querySelector('.elements__list');
 
 const configuration = {
     formSelector: '.popup__form',
@@ -70,7 +71,7 @@ initialCards.forEach((elem) => {
 
 function prependCard(elem) {
     const card = createCard(elem);
-    document.querySelector('.elements__list').prepend(card);
+    elementsList.prepend(card);
 }
 
 function addPhoto(evt) {
@@ -82,16 +83,13 @@ function addPhoto(evt) {
     }
     prependCard(newCard);
     evt.target.reset();
-    const submitButton = evt.target.querySelector('.popup__submit-button');
-    submitButton.disabled = true;
-    submitButton.classList.add('popup__submit-button_disabled');
     closePopup();
 }
 
-function openPopupPost(title, link) {
-    popupImage.src = link;
-    popupImage.alt = title;
-    popupFigcaption.textContent = title;
+function openPopupPost() {
+    titleForm.value = '';
+    photoForm.value = '';
+    addPhotoValid.resetValidation();
     openPopup(popupPost);
 }
 
@@ -122,6 +120,7 @@ function closePopup() {
 function setInfo() {
     nameForm.value = namePage.textContent;
     descriptionForm.value = descriptionPage.textContent;
+    editUserValid.resetValidation();
     openPopup(popupInfo);
 }
 
