@@ -53,7 +53,7 @@ class FormValidator {
         error.textContent = '';
     }
     resetValidation() {
-        //this._checkSubmitButton();
+        this._checkSubmitButton();
         this._inputs.forEach((input) => {
             this._hideError(input);
         })

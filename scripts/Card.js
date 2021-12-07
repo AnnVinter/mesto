@@ -1,11 +1,12 @@
 const popupPhoto = document.querySelector('.popup_type_photo');
+const popupImage = document.querySelector('.popup__image');
+const popupFigcaption = document.querySelector('.popup__figcaption');
 class Card {
     constructor(card, templateSelector, openPopup) {
         this._name = card.name;
         this._link = card.link;
         this._templateSelector = templateSelector;
         this._openPopup = openPopup;
-        //const popupPhoto = document.querySelector('.popup_type_photo');
     }
 
     _getTemplate() {
@@ -43,9 +44,9 @@ class Card {
     }
 
     _openImage(link, name) {
-        document.querySelector('.popup__image').src = link;
-        document.querySelector('.popup__image').alt = name;
-        document.querySelector('.popup__figcaption').textContent = name;
+        popupImage.src = link;
+        popupImage.alt = name;
+        popupFigcaption.textContent = name;
         this._openPopup(popupPhoto);
     }
 }
